@@ -12,7 +12,7 @@ DEVICE_ID = '1776786148042-4c4uc'
 BASE_URL = "https://gateway-prod.ideonow.com"
 IMAGE_BASE = "https://tcl-channel-cdn.ideonow.com"
 ORIGIN = "https://tcltv.plus"
-EPG_URL = "https://raw.githubusercontent.com/BuddyChewChew/tcl-playlist-generator/refs/heads/main/tcl_epg.xml"
+EPG_URL = "https://github.com/demonlive-SAS/buddy_tcl_playlist/raw/refs/heads/main/tcl_epg.xml"
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s | %(levelname)s | %(message)s')
 logger = logging.getLogger(__name__)
@@ -97,7 +97,7 @@ def fetch_data():
                         "name": ch.get("name"),
                         "logo": f"{IMAGE_BASE}{ch.get('logo_color')}" if ch.get('logo_color') else "",
                         "stream": stream,
-                        "category": cat_name,
+                        "category": "Fast TCL",  # Changed all categories to "Fast TCL"
                         "description": ch.get("description", "").strip()
                     }
                 
@@ -234,7 +234,6 @@ def generate_files(channels_map, stubs, program_map):
                 desc_count += 1
             except Exception as e:
                 logger.warning(f"Failed to write desc for {clean_title}: {e}")
-        # else: no description available
 
         # Episode numbering
         if season or episode:
